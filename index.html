@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Веб-студия | Создание сайтов с нуля | Лендинги и многостраничные сайты</title>
+    <meta name="description" content="Профессиональная веб-студия создает современные сайты с нуля. Разработка лендингов от 150€ и многостраничных сайтов от 350€. Быстрые сроки, SEO оптимизация, мобильная адаптация.">
+    <meta name="keywords" content="создание сайтов, веб-студия, лендинги, многостраничные сайты, SEO оптимизация, мобильная адаптация, веб-разработка">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Веб-студия | Создание сайтов с нуля">
+    <meta property="og:description" content="Профессиональная разработка сайтов от опытной веб-студии. Лендинги и многостраничные сайты с гарантией качества.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://вашдомен.com">
+    <meta property="og:image" content="https://вашдомен.com/og-image.jpg">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Веб-студия | Создание сайтов с нуля">
+    <meta name="twitter:description" content="Профессиональная веб-студия создает современные сайты с нуля">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>">
+    
+    <style>
+        :root {
+            --primary-500: #0ea5e9;
+            --primary-600: #0284c7;
+            --primary-700: #0369a1;
+            --secondary-900: #0f172a;
+            --secondary-600: #475569;
+            --secondary-500: #64748b;
+            --secondary-100: #f1f5f9;
+            --white: #ffffff;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: var(--secondary-900);
+            overflow-x: hidden;
+        }
+        
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 70px;
+        }
+        
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary-600);
+        }
+        
+        .logo span {
+            color: var(--secondary-600);
+        }
+        
+        .nav {
+            display: none;
+        }
+        
+        .nav a {
+            margin-left: 2rem;
+            text-decoration: none;
+            color: var(--secondary-600);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav a:hover {
+            color: var(--primary-600);
+        }
+        
+        .cta-button {
+            background: var(--primary-600);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 0.5rem;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background 0.2s;
+        }
+        
+        .cta-button:hover {
+            background: var(--primary-700);
+        }
+        
+        .mobile-menu-btn {
+            display: block;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--secondary-600);
+        }
+        
+        /* Hero Section */
+        .hero {
+            padding: 8rem 1rem 4rem;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #dbeafe;
+            color: var(--primary-700);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(to right, var(--primary-600), #2563eb);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.125rem;
+            color: var(--secondary-600);
+            margin-bottom: 2rem;
+            max-width: 600px;
+        }
+        
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            max-width: 300px;
+        }
+        
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+        
+        .btn-primary {
+            background: var(--primary-600);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: var(--primary-700);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(2, 132, 199, 0.3);
+        }
+        
+        .btn-secondary {
+            border: 2px solid var(--primary-600);
+            color: var(--primary-600);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--primary-600);
+            color: white;
+        }
+        
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+            padding-top: 2rem;
+            border-top: 1px solid var(--secondary-100);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 800;
+            color: var(--primary-600);
+        }
+        
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--secondary-500);
+        }
+        
+        /* Services Section */
+        .section {
+            padding: 5rem 1rem;
+        }
+        
+        .section-header {
+            text-align: center;
+            max-width: 600px;
+            margin: 0 auto 4rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            font-weight: 800;
+            margin-bottom: 1rem;
+        }
+        
+        .section-description {
+            font-size: 1.125rem;
+            color: var(--secondary-600);
+        }
+        
+        .services-grid {
+            max-width: 1000px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 2rem;
+        }
+        
+        .service-card {
+            background: white;
+            border-radius: 1rem;
+            padding: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            border: 1px solid var(--secondary-100);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .popular-badge {
+            background: var(--primary-600);
+            color: white;
+            padding: 0.25rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+        
+        .service-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+        }
+        
+        .price-info {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .price {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--primary-600);
+        }
+        
+        .features {
+            list-style: none;
+            margin-bottom: 2rem;
+        }
+        
+        .features li {
+            padding: 0.5rem 0;
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .features li::before {
+            content: "✓";
+            color: #10b981;
+            font-weight: bold;
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+        
+        /* Responsive */
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+                align-items: center;
+            }
+            
+            .mobile-menu-btn {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .buttons {
+                flex-direction: row;
+            }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 1024px) {
+            .hero-container {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-container">
+            <div class="logo">Веб<span>Студия</span></div>
+            <nav class="nav">
+                <a href="#services">Услуги</a>
+                <a href="#additional">Дополнительно</a>
+                <a href="#contact">Контакты</a>
+                <a href="#contact" class="cta-button">Заказать сайт</a>
+            </nav>
+            <button class="mobile-menu-btn">☰</button>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div>
+                <div class="badge">✨ Создаем сайты с нуля</div>
+                <h1>Современные сайты <span class="gradient-text">для вашего бизнеса</span></h1>
+                <p>Профессиональная веб-студия разрабатывает лендинги и многостраничные сайты с полной SEO оптимизацией и мобильной адаптацией. Гарантия качества и быстрые сроки.</p>
+                
+                <div class="buttons">
+                    <a href="#services" class="btn btn-primary">Выбрать пакет услуг</a>
+                    <a href="#contact" class="btn btn-secondary">Получить консультацию</a>
+                </div>
+                
+                <div class="stats">
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Проектов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Довольных клиентов</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Поддержка</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- Illustration placeholder -->
+                <div style="background: linear-gradient(135deg, var(--primary-500), #2563eb); border-radius: 1rem; padding: 2rem; height: 400px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem;">
+                    💻 Иллюстрация сайта
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Наши пакеты услуг</h2>
+            <p class="section-description">Все сайты создаются с нуля под ваши конкретные задачи и цели</p>
+        </div>
+        
+        <div class="services-grid">
+            <div class="service-card">
+                <h3 class="service-title">Одностраничный сайт - лендинг</h3>
+                <div class="price-info">
+                    <div class="price">150 €</div>
+                    <div>5 рабочих дней</div>
+                    <div style="font-size: 0.875rem; color: var(--secondary-500);">2 раунда правок</div>
+                </div>
+                <ul class="features">
+                    <li>Мобильная оптимизация</li>
+                    <li>Форма обратной связи</li>
+                    <li>Google Maps интеграция</li>
+                    <li>Ссылки на социальные сети</li>
+                    <li>Полностью готов за 5 дней</li>
+                </ul>
+                <a href="#contact" class="btn btn-secondary" style="display: block;">Заказать этот пакет</a>
+            </div>
+            
+            <div class="service-card" style="border: 2px solid var(--primary-500); background: linear-gradient(to bottom right, #f0f9ff, white);">
+                <div class="popular-badge">Популярный выбор</div>
+                <h3 class="service-title">До 5 подстраниц</h3>
+                <div class="price-info">
+                    <div class="price">350 €</div>
+                    <div>до 10 рабочих дней</div>
+                    <div style="font-size: 0.875rem; color: var(--secondary-500);">3 раунда правок</div>
+                </div>
+                <ul class="features">
+                    <li>Базовая SEO-настройка</li>
+                    <li>Профессиональные тексты</li>
+                    <li>Страница галереи/портфолио</li>
+                    <li>Система бронирования</li>
+                    <li>1 месяц бесплатной поддержки</li>
+                    <li>Полностью готов за 10 дней</li>
+                </ul>
+                <a href="#contact" class="btn btn-primary" style="display: block;">Заказать этот пакет</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Services Section -->
+    <section id="additional" class="section" style="background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);">
+        <div class="section-header">
+            <h2 class="section-title">Дополнительные услуги</h2>
+            <p class="section-description">Расширьте возможности вашего сайта с нашими дополнительными сервисами</p>
+        </div>
+        
+        <div class="services-grid" style="max-width: 1000px; margin: 0 auto; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));">
+            <div class="service-card">
+                <h3 class="service-title" style="text-align: center;">Поддержка сайта</h3>
+                <div class="price" style="text-align: center; font-size: 2rem; margin: 1rem 0;">20 €/мес</div>
+                <p style="text-align: center; color: var(--secondary-600);">Регулярное обслуживание, обновления, мониторинг работоспособности</p>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title" style="text-align: center;">Срочные изменения</h3>
+                <div class="price" style="text-align: center; font-size: 2rem; margin: 1rem 0;">50 €</div>
+                <p style="text-align: center; color: var(--secondary-600);">Экспресс внесение изменений и исправлений в существующие сайты</p>
+            </div>
+            
+            <div class="service-card">
+                <h3 class="service-title" style="text-align: center;">Настройка домена</h3>
+                <div class="price" style="text-align: center; font-size: 2rem; margin: 1rem 0;">20 €</div>
+                <p style="text-align: center; color: var(--secondary-600);">Подключение и настройка доменного имени для вашего сайта</p>
+            </div>
+        </div>
+        
+        <!-- Why Choose Us -->
+        <div style="max-width: 800px; margin: 4rem auto 0; background: var(--primary-600); border-radius: 1rem; padding: 3rem; color: white;">
+            <h3 style="font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 2rem;">Почему выбирают нас?</h3>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem;">
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 0.75rem; border-radius: 0.5rem; flex-shrink: 0;">
+                        ✓
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Качество и надежность</h4>
+                        <p style="font-size: 0.875rem; opacity: 0.9;">Каждый сайт проходит тщательное тестирование перед сдачей</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 0.75rem; border-radius: 0.5rem; flex-shrink: 0;">
+                        ⏰
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Соблюдение сроков</h4>
+                        <p style="font-size: 0.875rem; opacity: 0.9;">Четко соблюдаем оговоренные дедлайны без задержек</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 0.75rem; border-radius: 0.5rem; flex-shrink: 0;">
+                        🎯
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Индивидуальный подход</h4>
+                        <p style="font-size: 0.875rem; opacity: 0.9;">Учитываем все ваши пожелания и специфику бизнеса</p>
+                    </div>
+                </div>
+                
+                <div style="display: flex; align-items: flex-start; gap: 1rem;">
+                    <div style="background: rgba(255,255,255,0.2); padding: 0.75rem; border-radius: 0.5rem; flex-shrink: 0;">
+                        🛠️
+                    </div>
+                    <div>
+                        <h4 style="font-weight: 600; margin-bottom: 0.5rem;">Постоянная поддержка</h4>
+                        <p style="font-size: 0.875rem; opacity: 0.9;">Оказываем техническую поддержку даже после завершения проекта</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section">
+        <div class="section-header">
+            <h2 class="section-title">Свяжитесь с нами</h2>
+            <p class="section-description">Расскажите о вашем проекте и мы предложим оптимальное решение</p>
+        </div>
+        
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 3rem;">
+            <!-- Contact Form -->
+            <div style="background: linear-gradient(135deg, #dbeafe, #bae6fd); border-radius: 1rem; padding: 2rem;">
+                <form style="display: grid; gap: 1.5rem;">
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Ваше имя *</label>
+                        <input type="text" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--secondary-200); border-radius: 0.5rem;">
+                    </div>
+                    
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Email *</label>
+                            <input type="email" required style="width: 100%; padding: 0.75rem; border: 1px solid var(--secondary-200); border-radius: 0.5rem;">
+                        </div>
+                        <div>
+                            <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Телефон</label>
+                            <input type="tel" style="width: 100%; padding: 0.75rem; border: 1px solid var(--secondary-200); border-radius: 0.5rem;">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Интересующий пакет услуг</label>
+                        <select style="width: 100%; padding: 0.75rem; border: 1px solid var(--secondary-200); border-radius: 0.5rem;">
+                            <option>Выберите пакет</option>
+                            <option>Одностраничный сайт - 150€</option>
+                            <option>До 5 подстраниц - 350€</option>
+                            <option>Консультация</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label style="display: block; margin-bottom: 0.5rem; font-weight: 500;">Сообщение</label>
+                        <textarea rows="4" style="width: 100%; padding: 0.75rem; border: 1px solid var(--secondary-200); border-radius: 0.5rem;"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary" style="width: 100%;">Отправить заявку</button>
+                </form>
+            </div>
+            
+            <!-- Contact Info -->
+            <div style="display: grid; grid-template-columns: 1fr; gap: 2rem;">
+                <div class="service-card">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Контактная информация</h3>
+                    <div style="display: grid; gap: 1rem;">
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="background: #dbeafe; padding: 0.75rem; border-radius: 0.5rem; color: var(--primary-600);">
+                                ☎️
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Телефон</div>
+                                <div style="color: var(--secondary-600);">+7 (___) ___-____</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="background: #dbeafe; padding: 0.75rem; border-radius: 0.5rem; color: var(--primary-600);">
+                                ✉️
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Email</div>
+                                <div style="color: var(--secondary-600);">info@вашдомен.com</div>
+                            </div>
+                        </div>
+                        
+                        <div style="display: flex; align-items: center; gap: 1rem;">
+                            <div style="background: #dbeafe; padding: 0.75rem; border-radius: 0.5rem; color: var(--primary-600);">
+                                📍
+                            </div>
+                            <div>
+                                <div style="font-weight: 600;">Адрес</div>
+                                <div style="color: var(--secondary-600);">Ваш город, улица, дом</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Social Links -->
+                <div class="service-card">
+                    <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1.5rem;">Мы в социальных сетях</h3>
+                    <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                        <a href="#" style="background: var(--primary-600); color: white; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">📸</a>
+                        <a href="#" style="background: #1da1f2; color: white; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">🐦</a>
+                        <a href="#" style="background: #1877f2; color: white; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">👍</a>
+                        <a href="#" style="background: #25d366; color: white; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">💬</a>
+                    </div>
+                </div>
+                
+                <!-- Map Placeholder -->
+                <div style="height: 300px; background: #e2e8f0; border-radius: 1rem; display: flex; align-items: center; justify-content: center; color: var(--secondary-500); flex-direction: column;">
+                    <div style="font-size: 3rem; margin-bottom: 1rem;">🗺️</div>
+                    <p>Карта Google Maps будет здесь</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer style="background: var(--secondary-900); color: white; padding: 3rem 1rem;">
+        <div style="max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 2rem;">
+            <div>
+                <h3 style="font-size: 1.5rem; font-weight: 700; margin-bottom: 1rem;">Веб<span style="color: #38bdf8;">Студия</span></h3>
+                <p style="color: #94a3b8; margin-bottom: 2rem; max-width: 500px;">Профессиональная веб-студия создает современные сайты с нуля. Разработка лендингов и многостраничных сайтов с полной SEO оптимизацией.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" style="background: var(--primary-600); padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">📸</a>
+                    <a href="#" style="background: #1da1f2; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">🐦</a>
+                    <a href="#" style="background: #1877f2; padding: 0.75rem; border-radius: 0.5rem; text-decoration: none; display: flex; align-items: center; justify-content: center; width: 40px; height: 40px;">👍</a>
+                </div>
+            </div>
+            
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Услуги</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.5rem;"><a href="#services" style="color: #94a3b8; text-decoration: none;">Лендинги</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#services" style="color: #94a3b8; text-decoration: none;">Многостраничные сайты</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#additional" style="color: #94a3b8; text-decoration: none;">Поддержка</a></li>
+                        <li style="margin-bottom: 0.5rem;"><a href="#additional" style="color: #94a3b8; text-decoration: none;">SEO оптимизация</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 style="font-size: 1.125rem; font-weight: 600; margin-bottom: 1rem;">Контакты</h4>
+                    <ul style="list-style: none;">
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <span>☎️</span>
+                            <span>+7 (___) ___-____</span>
+                        </li>
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <span>✉️</span>
+                            <span>info@вашдомен.com</span>
+                        </li>
+                        <li style="margin-bottom: 0.75rem; display: flex; align-items: flex-start; gap: 0.75rem;">
+                            <span>📍</span>
+                            <span>Ваш город</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <div style="max-width: 1200px; margin: 3rem auto 0; padding-top: 2rem; border-top: 1px solid #334155; display: flex; flex-direction: column; gap: 1rem; text-align: center;">
+            <p style="color: #94a3b8; font-size: 0.875rem;">© 2026 ВебСтудия. Все права защищены.</p>
+            <div style="display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;">
+                <a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.875rem;">Политика конфиденциальности</a>
+                <a href="#" style="color: #94a3b8; text-decoration: none; font-size: 0.875rem;">Условия использования</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple mobile menu toggle
+        document.querySelector('.mobile-menu-btn').addEventListener('click', function() {
+            const nav = document.querySelector('.nav');
+            if (nav.style.display === 'flex') {
+                nav.style.display = 'none';
+            } else {
+                nav.style.display = 'flex';
+                nav.style.flexDirection = 'column';
+                nav.style.position = 'absolute';
+                nav.style.top = '70px';
+                nav.style.left = '0';
+                nav.style.right = '0';
+                nav.style.background = 'white';
+                nav.style.padding = '1rem';
+                nav.style.boxShadow = '0 4px 10px rgba(0,0,0,0.1)';
+            }
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
