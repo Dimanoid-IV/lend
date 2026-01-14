@@ -90,10 +90,8 @@
         
         /* Language Dropdown */
         .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1100;
+            display: inline-block;
+            margin-left: 1rem;
         }
 
         .lang-dropdown {
@@ -815,7 +813,13 @@
             }
             
             .mobile-menu-btn {
-                margin-right: 60px; /* Оставляем место для языкового меню */
+                display: block;
+                background: none;
+                border: none;
+                font-size: 1.5rem;
+                cursor: pointer;
+                color: var(--primary);
+                padding: 0.5rem;
             }
         }
         
@@ -829,22 +833,6 @@
     </style>
 </head>
 <body>
-    <div class="lang-switcher">
-        <div class="lang-dropdown">
-            <button class="lang-toggle">
-                <span id="current-lang">RU</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
-            </button>
-            <div class="lang-menu">
-                <div class="lang-menu-content">
-                    <button onclick="switchLanguage('ru')" class="active">RU</button>
-                    <button onclick="switchLanguage('en')">EN</button>
-                    <button onclick="switchLanguage('et')">ET</button>
-                </div>
-            </div>
-        </div>
-    </div>
-
     <header class="header">
         <div class="header-container">
             <a href="#" class="logo">Web<span>Start</span></a>
@@ -853,6 +841,21 @@
                 <a href="#additional" data-i18n="navAdditional">Additional</a>
                 <a href="#contact" data-i18n="navContact">Contact</a>
                 <a href="#contact" class="cta-button" data-i18n="ctaOrder">Order Website</a>
+                <div class="lang-switcher">
+                    <div class="lang-dropdown">
+                        <button class="lang-toggle">
+                            <span id="current-lang">RU</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                        </button>
+                        <div class="lang-menu">
+                            <div class="lang-menu-content">
+                                <button onclick="switchLanguage('ru')" class="active">RU</button>
+                                <button onclick="switchLanguage('en')">EN</button>
+                                <button onclick="switchLanguage('et')">ET</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </nav>
             <button class="mobile-menu-btn" aria-label="Toggle Menu">☰</button>
         </div>

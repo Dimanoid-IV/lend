@@ -69,6 +69,13 @@
             transform: translateX(-5px);
         }
 
+        .privacy-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
         h1 {
             font-size: 2.5rem;
             font-weight: 800;
@@ -93,10 +100,7 @@
 
         /* Language Dropdown */
         .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1100;
+            display: inline-block;
         }
 
         .lang-dropdown {
@@ -179,10 +183,6 @@
         }
 
         @media (max-width: 767px) {
-            .lang-switcher {
-                top: 10px;
-                right: 10px;
-            }
             .lang-toggle { padding: 6px 10px; font-size: 0.8rem; }
         }
 
@@ -209,27 +209,28 @@
     </style>
 </head>
 <body>
-    <div class="lang-switcher">
-        <div class="lang-dropdown">
-            <button class="lang-toggle">
-                <span id="current-lang">RU</span>
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
-            </button>
-            <div class="lang-menu">
-                <div class="lang-menu-content">
-                    <button onclick="switchLanguage('ru')" class="active">RU</button>
-                    <button onclick="switchLanguage('en')">EN</button>
-                    <button onclick="switchLanguage('et')">ET</button>
+    <div class="container">
+        <div class="privacy-header">
+            <a href="/" class="back-btn" data-i18n="backBtn" style="margin-bottom: 0;">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+                Назад
+            </a>
+            <div class="lang-switcher">
+                <div class="lang-dropdown">
+                    <button class="lang-toggle">
+                        <span id="current-lang">RU</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+                    </button>
+                    <div class="lang-menu">
+                        <div class="lang-menu-content">
+                            <button onclick="switchLanguage('ru')" class="active">RU</button>
+                            <button onclick="switchLanguage('en')">EN</button>
+                            <button onclick="switchLanguage('et')">ET</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-
-    <div class="container">
-        <a href="/" class="back-btn" data-i18n="backBtn">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
-            Назад
-        </a>
 
         <h1 data-i18n="privacyTitle">Политика конфиденциальности</h1>
 
