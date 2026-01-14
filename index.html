@@ -603,6 +603,111 @@
             padding: 6rem 2rem 2rem;
         }
         
+        /* Portfolio Carousel */
+        .portfolio-carousel {
+            max-width: 1300px;
+            margin: 6rem auto 0;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .carousel-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-dark);
+        }
+        
+        .carousel-container {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            padding: 1rem 0 2rem;
+            scrollbar-width: thin;
+            scrollbar-color: var(--accent) var(--border);
+        }
+        
+        .carousel-container::-webkit-scrollbar {
+            height: 8px;
+        }
+        
+        .carousel-container::-webkit-scrollbar-track {
+            background: var(--border);
+            border-radius: 10px;
+        }
+        
+        .carousel-container::-webkit-scrollbar-thumb {
+            background: var(--accent);
+            border-radius: 10px;
+        }
+        
+        .carousel-item {
+            min-width: 350px;
+            flex-shrink: 0;
+            background: var(--white);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        
+        .carousel-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+        
+        .carousel-item img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 3px solid var(--accent);
+        }
+        
+        .carousel-content {
+            padding: 1.5rem;
+        }
+        
+        .carousel-content h4 {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+        
+        .carousel-content p {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+        }
+        
+        .carousel-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-top: 1rem;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        .carousel-link:hover {
+            gap: 0.75rem;
+        }
+        
+        @media (max-width: 767px) {
+            .carousel-item {
+                min-width: 280px;
+            }
+            
+            .carousel-title {
+                font-size: 1.75rem;
+            }
+        }
+        
         /* ... Mobile Styles ... */
         @media (max-width: 767px) {
             .lang-switcher {
@@ -811,7 +916,61 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
+    <!-- Portfolio Carousel -->
+    <section class="section">
+        <div class="portfolio-carousel reveal">
+            <h3 class="carousel-title" data-i18n="portfolioTitle">Our Recent Projects</h3>
+            <div class="carousel-container">
+                <div class="carousel-item" onclick="window.open('https://petdream.eu', '_blank')">
+                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=PetDream.eu" alt="PetDream.eu">
+                    <div class="carousel-content">
+                        <h4>PetDream.eu</h4>
+                        <p data-i18n="portfolioPetdream">Pet products e-commerce platform</p>
+                        <a href="https://petdream.eu" target="_blank" class="carousel-link" data-i18n="visitSite">
+                            Visit Website
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" onclick="window.open('https://dreambooks.ee', '_blank')">
+                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=DreamBooks.ee" alt="DreamBooks.ee">
+                    <div class="carousel-content">
+                        <h4>DreamBooks.ee</h4>
+                        <p data-i18n="portfolioDreambooks">Online bookstore and library platform</p>
+                        <a href="https://dreambooks.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                            Visit Website
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" onclick="window.open('https://autotop.ee', '_blank')">
+                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=AutoTop.ee" alt="AutoTop.ee">
+                    <div class="carousel-content">
+                        <h4>AutoTop.ee</h4>
+                        <p data-i18n="portfolioAutotop">Car parts and accessories online store</p>
+                        <a href="https://autotop.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                            Visit Website
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="carousel-item" onclick="window.open('https://veox.ee', '_blank')">
+                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=Veox.ee" alt="Veox.ee">
+                    <div class="carousel-content">
+                        <h4>Veox.ee</h4>
+                        <p data-i18n="portfolioVeox">Modern tech solutions and services</p>
+                        <a href="https://veox.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                            Visit Website
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     <section id="contact" class="section light">
         <div class="section-header reveal">
             <h2 class="section-title" data-i18n="contactTitle">Contact Us</h2>
@@ -976,6 +1135,12 @@
                 deadlineDesc: "Четко соблюдаем оговоренные дедлайны без задержек",
                 approachTitle: "Индивидуальный подход",
                 approachDesc: "Учитываем все ваши пожелания и специфику бизнеса",
+                portfolioTitle: "Наши последние проекты",
+                portfolioPetdream: "Интернет-магазин товаров для животных",
+                portfolioDreambooks: "Онлайн-магазин книг и библиотека",
+                portfolioAutotop: "Интернет-магазин автозапчастей",
+                portfolioVeox: "Современные технологические решения",
+                visitSite: "Посетить сайт",
                 contactTitle: "Свяжитесь с нами",
                 contactDesc: "Расскажите о вашем проекте и мы предложим оптимальное решение",
                 formName: "Ваше имя *",
@@ -1051,6 +1216,12 @@
                 deadlineDesc: "We strictly adhere to agreed deadlines without delays",
                 approachTitle: "Individual Approach",
                 approachDesc: "We consider all your wishes and business specifics",
+                portfolioTitle: "Our Recent Projects",
+                portfolioPetdream: "Pet products e-commerce platform",
+                portfolioDreambooks: "Online bookstore and library platform",
+                portfolioAutotop: "Car parts and accessories online store",
+                portfolioVeox: "Modern tech solutions and services",
+                visitSite: "Visit Website",
                 contactTitle: "Contact Us",
                 contactDesc: "Tell us about your project and we'll offer an optimal solution",
                 formName: "Your Name *",
@@ -1126,6 +1297,12 @@
                 deadlineDesc: "Järgime rangelt kokkulepitud tähtaegasid viivituseta",
                 approachTitle: "Individuaalne lähenemine",
                 approachDesc: "Võtame arvesse kõiki teie soove ja äriloogikat",
+                portfolioTitle: "Meie viimased projektid",
+                portfolioPetdream: "Lemmikloomade toodete e-kaubanduse platvorm",
+                portfolioDreambooks: "Veebipõhine raamatupood ja raamatukogu",
+                portfolioAutotop: "Autode varuosade ja tarvikute veebipood",
+                portfolioVeox: "Kaasaegsed tehnoloogilised lahendused",
+                visitSite: "Külasta veebilehte",
                 contactTitle: "Võta meiega ühendust",
                 contactDesc: "Räägi meile oma projektist ja me pakume optimaalse lahenduse",
                 formName: "Teie nimi *",
