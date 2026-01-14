@@ -635,6 +635,7 @@
         
         .carousel-item {
             min-width: 350px;
+            height: 250px; /* Фиксированная высота для отображения фона */
             flex-shrink: 0;
             background: var(--white);
             border-radius: 20px;
@@ -645,7 +646,7 @@
             position: relative;
             z-index: 1;
             display: flex;
-            flex-direction: column;
+            align-items: flex-end; /* Текст внизу карточки */
         }
         
         .carousel-item::before {
@@ -678,16 +679,10 @@
             box-shadow: var(--shadow-xl);
         }
         
-        .carousel-item img {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-bottom: 3px solid var(--accent);
-            background: white; /* Fallback for slow loading thumbnails */
-        }
-        
         .carousel-content {
             padding: 1.5rem;
+            width: 100%;
+            background: linear-gradient(to top, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0.8) 70%, transparent 100%);
         }
         
         .carousel-content h4 {
@@ -944,7 +939,6 @@
             <div class="carousel-container">
                 <div class="carousel-track" id="carouselTrack">
                     <div class="carousel-item item-petdream" onclick="window.open('https://petdream.eu', '_blank')">
-                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=PetDream.eu" alt="PetDream.eu">
                         <div class="carousel-content">
                             <h4>PetDream.eu</h4>
                             <p data-i18n="portfolioPetdream">Pet products e-commerce platform</p>
@@ -956,7 +950,6 @@
                     </div>
                     
                     <div class="carousel-item item-dreambooks" onclick="window.open('https://dreambooks.ee', '_blank')">
-                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=DreamBooks.ee" alt="DreamBooks.ee">
                         <div class="carousel-content">
                             <h4>DreamBooks.ee</h4>
                             <p data-i18n="portfolioDreambooks">Online bookstore and library platform</p>
@@ -968,7 +961,6 @@
                     </div>
                     
                     <div class="carousel-item item-autotop" onclick="window.open('https://autotop.ee', '_blank')">
-                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=AutoTop.ee" alt="AutoTop.ee">
                         <div class="carousel-content">
                             <h4>AutoTop.ee</h4>
                             <p data-i18n="portfolioAutotop">Car parts and accessories online store</p>
@@ -980,7 +972,6 @@
                     </div>
                     
                     <div class="carousel-item item-veox" onclick="window.open('https://veox.ee', '_blank')">
-                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=Veox.ee" alt="Veox.ee">
                         <div class="carousel-content">
                             <h4>Veox.ee</h4>
                             <p data-i18n="portfolioVeox">Modern tech solutions and services</p>
