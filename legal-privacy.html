@@ -81,6 +81,101 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Language Dropdown */
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1100;
+        }
+
+        .lang-dropdown {
+            position: relative;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            border-radius: 12px;
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+        }
+
+        .lang-toggle {
+            padding: 8px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.9rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border-radius: 12px;
+            transition: var(--transition);
+        }
+
+        .lang-menu {
+            position: absolute;
+            top: 100%;
+            right: 0;
+            padding-top: 8px;
+            background: transparent;
+            display: none;
+            flex-direction: column;
+            min-width: 80px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: var(--transition);
+        }
+
+        .lang-menu-content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 20px 25px -5px rgb(0 0 0 / 0.1);
+            border: 1px solid var(--border);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .lang-dropdown:hover .lang-menu {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .lang-menu-content button {
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            text-align: left;
+            transition: var(--transition);
+            width: 100%;
+        }
+
+        .lang-menu-content button:hover {
+            background: var(--light);
+            color: var(--accent);
+        }
+
+        .lang-menu-content button.active {
+            background: var(--light);
+            color: var(--accent);
+            pointer-events: none;
+        }
+
+        @media (max-width: 767px) {
+            .lang-switcher {
+                top: 10px;
+                right: 10px;
+            }
+            .lang-toggle { padding: 6px 10px; font-size: 0.8rem; }
+        }
+
         p {
             margin-bottom: 1rem;
             color: var(--text-secondary);
@@ -104,73 +199,266 @@
     </style>
 </head>
 <body>
+    <div class="lang-switcher">
+        <div class="lang-dropdown">
+            <button class="lang-toggle">
+                <span id="current-lang">RU</span>
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9l6 6 6-6"></path></svg>
+            </button>
+            <div class="lang-menu">
+                <div class="lang-menu-content">
+                    <button onclick="switchLanguage('ru')" class="active">RU</button>
+                    <button onclick="switchLanguage('en')">EN</button>
+                    <button onclick="switchLanguage('et')">ET</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="container">
-        <a href="/" class="back-btn">
+        <a href="/" class="back-btn" data-i18n="backBtn">
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
             Назад
         </a>
 
-        <h1>Политика конфиденциальности</h1>
+        <h1 data-i18n="privacyTitle">Политика конфиденциальности</h1>
 
-        <p>Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Webstart.ee, который принадлежит WebStart веб-студии.</p>
-        <p>Используя сайт, пользователь выражает согласие с данной Политикой конфиденциальности.</p>
+        <p data-i18n="privacyIntro1">Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Webstart.ee, который принадлежит WebStart веб-студии.</p>
+        <p data-i18n="privacyIntro2">Используя сайт, пользователь выражает согласие с данной Политикой конфиденциальности.</p>
 
-        <h2>1. Общие положения</h2>
-        <p>1.1. Администрация сайта соблюдает требования законодательства в области защиты персональных данных и принимает все необходимые меры для их сохранности.</p>
-        <p>1.2. Политика применяется ко всей информации, которую сайт может получить о пользователе во время его использования.</p>
-        <p>1.3. Администрация сайта не проверяет достоверность предоставляемых пользователем персональных данных.</p>
+        <h2 data-i18n="section1Title">1. Общие положения</h2>
+        <p data-i18n="section1p1">1.1. Администрация сайта соблюдает требования законодательства в области защиты персональных данных и принимает все необходимые меры для их сохранности.</p>
+        <p data-i18n="section1p2">1.2. Политика применяется ко всей информации, которую сайт может получить о пользователе во время его использования.</p>
+        <p data-i18n="section1p3">1.3. Администрация сайта не проверяет достоверность предоставляемых пользователем персональных данных.</p>
 
-        <h2>2. Персональные данные пользователей</h2>
-        <p>Сайт может собирать следующие данные:</p>
+        <h2 data-i18n="section2Title">2. Персональные данные пользователей</h2>
+        <p data-i18n="section2Intro">Сайт может собирать следующие данные:</p>
         <ul>
-            <li>имя, фамилия;</li>
-            <li>адрес электронной почты;</li>
-            <li>номер телефона;</li>
-            <li>данные, указанные в формах обратной связи;</li>
-            <li>техническая информация (IP-адрес, cookies, тип браузера, данные об устройстве).</li>
+            <li data-i18n="dataItem1">имя, фамилия;</li>
+            <li data-i18n="dataItem2">адрес электронной почты;</li>
+            <li data-i18n="dataItem3">номер телефона;</li>
+            <li data-i18n="dataItem4">данные, указанные в формах обратной связи;</li>
+            <li data-i18n="dataItem5">техническая информация (IP-адрес, cookies, тип браузера, данные об устройстве).</li>
         </ul>
 
-        <h2>3. Цели сбора персональных данных</h2>
-        <p>Персональные данные пользователей используются для:</p>
+        <h2 data-i18n="section3Title">3. Цели сбора персональных данных</h2>
+        <p data-i18n="section3Intro">Персональные данные пользователей используются для:</p>
         <ul>
-            <li>обратной связи с пользователем;</li>
-            <li>обработки заявок и запросов;</li>
-            <li>предоставления услуг веб-студии;</li>
-            <li>улучшения качества работы сайта;</li>
-            <li>аналитики и статистики;</li>
-            <li>выполнения требований законодательства.</li>
+            <li data-i18n="purposeItem1">обратной связи с пользователем;</li>
+            <li data-i18n="purposeItem2">обработки заявок и запросов;</li>
+            <li data-i18n="purposeItem3">предоставления услуг веб-студии;</li>
+            <li data-i18n="purposeItem4">улучшения качества работы сайта;</li>
+            <li data-i18n="purposeItem5">аналитики и статистики;</li>
+            <li data-i18n="purposeItem6">выполнения требований законодательства.</li>
         </ul>
 
-        <h2>4. Обработка и хранение данных</h2>
-        <p>4.1. Обработка персональных данных осуществляется законными способами.</p>
-        <p>4.2. Персональные данные хранятся не дольше, чем это необходимо для целей их обработки.</p>
-        <p>4.3. Данные не передаются третьим лицам, за исключением случаев, предусмотренных законом или необходимых для оказания услуг (например, сервисы аналитики, хостинг).</p>
+        <h2 data-i18n="section4Title">4. Обработка и хранение данных</h2>
+        <p data-i18n="section4p1">4.1. Обработка персональных данных осуществляется законными способами.</p>
+        <p data-i18n="section4p2">4.2. Персональные данные хранятся не дольше, чем это необходимо для целей их обработки.</p>
+        <p data-i18n="section4p3">4.3. Данные не передаются третьим лицам, за исключением случаев, предусмотренных законом или необходимых для оказания услуг (например, сервисы аналитики, хостинг).</p>
 
-        <h2>5. Использование файлов cookie</h2>
-        <p>Сайт использует файлы cookie для:</p>
+        <h2 data-i18n="section5Title">5. Использование файлов cookie</h2>
+        <p data-i18n="section5Intro">Сайт использует файлы cookie для:</p>
         <ul>
-            <li>корректной работы сайта;</li>
-            <li>анализа поведения пользователей;</li>
-            <li>улучшения пользовательского опыта.</li>
+            <li data-i18n="cookieItem1">корректной работы сайта;</li>
+            <li data-i18n="cookieItem2">анализа поведения пользователей;</li>
+            <li data-i18n="cookieItem3">улучшения пользовательского опыта.</li>
         </ul>
-        <p>Пользователь может отключить cookie в настройках браузера.</p>
+        <p data-i18n="section5p2">Пользователь может отключить cookie в настройках браузера.</p>
 
-        <h2>6. Защита персональных данных</h2>
-        <p>Администрация сайта применяет организационные и технические меры для защиты персональных данных от:</p>
+        <h2 data-i18n="section6Title">6. Защита персональных данных</h2>
+        <p data-i18n="section6Intro">Администрация сайта применяет организационные и технические меры для защиты персональных данных от:</p>
         <ul>
-            <li>несанкционированного доступа;</li>
-            <li>утраты;</li>
-            <li>изменения;</li>
-            <li>распространения.</li>
+            <li data-i18n="protectItem1">несанкционированного доступа;</li>
+            <li data-i18n="protectItem2">утраты;</li>
+            <li data-i18n="protectItem3">изменения;</li>
+            <li data-i18n="protectItem4">распространения.</li>
         </ul>
 
-        <h2>7. Права пользователя</h2>
-        <p>Пользователь имеет право:</p>
+        <h2 data-i18n="section7Title">7. Права пользователя</h2>
+        <p data-i18n="section7Intro">Пользователь имеет право:</p>
         <ul>
-            <li>получать информацию о своих персональных данных;</li>
-            <li>требовать их уточнения, блокирования или удаления;</li>
-            <li>отзывать согласие на обработку персональных данных, обратившись по контактам сайта.</li>
+            <li data-i18n="rightsItem1">получать информацию о своих персональных данных;</li>
+            <li data-i18n="rightsItem2">требовать их уточнения, блокирования или удаления;</li>
+            <li data-i18n="rightsItem3">отзывать согласие на обработку персональных данных, обратившись по контактам сайта.</li>
         </ul>
     </div>
+
+    <script>
+        const translations = {
+            ru: {
+                title: "Политика конфиденциальности | WebStart",
+                backBtn: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Назад`,
+                privacyTitle: "Политика конфиденциальности",
+                privacyIntro1: "Настоящая Политика конфиденциальности определяет порядок обработки и защиты персональных данных пользователей сайта Webstart.ee, который принадлежит WebStart веб-студии.",
+                privacyIntro2: "Используя сайт, пользователь выражает согласие с данной Политикой конфиденциальности.",
+                section1Title: "1. Общие положения",
+                section1p1: "1.1. Администрация сайта соблюдает требования законодательства в области защиты персональных данных и принимает все необходимые меры для их сохранности.",
+                section1p2: "1.2. Политика применяется ко всей информации, которую сайт может получить о пользователе во время его использования.",
+                section1p3: "1.3. Администрация сайта не проверяет достоверность предоставляемых пользователем персональных данных.",
+                section2Title: "2. Персональные данные пользователей",
+                section2Intro: "Сайт может собирать следующие данные:",
+                dataItem1: "имя, фамилия;",
+                dataItem2: "адрес электронной почты;",
+                dataItem3: "номер телефона;",
+                dataItem4: "данные, указанные в формах обратной связи;",
+                dataItem5: "техническая информация (IP-адрес, cookies, тип браузера, данные об устройстве).",
+                section3Title: "3. Цели сбора персональных данных",
+                section3Intro: "Персональные данные пользователей используются для:",
+                purposeItem1: "обратной связи с пользователем;",
+                purposeItem2: "обработки заявок и запросов;",
+                purposeItem3: "предоставления услуг веб-студии;",
+                purposeItem4: "улучшения качества работы сайта;",
+                purposeItem5: "аналитики и статистики;",
+                purposeItem6: "выполнения требований законодательства.",
+                section4Title: "4. Обработка и хранение данных",
+                section4p1: "4.1. Обработка персональных данных осуществляется законными способами.",
+                section4p2: "4.2. Персональные данные хранятся не дольше, чем это необходимо для целей их обработки.",
+                section4p3: "4.3. Данные не передаются третьим лицам, за исключением случаев, предусмотренных законом или необходимых для оказания услуг (например, сервисы аналитики, хостинг).",
+                section5Title: "5. Использование файлов cookie",
+                section5Intro: "Сайт использует файлы cookie для:",
+                cookieItem1: "корректной работы сайта;",
+                cookieItem2: "анализа поведения пользователей;",
+                cookieItem3: "улучшения пользовательского опыта.",
+                section5p2: "Пользователь может отключить cookie в настройках браузера.",
+                section6Title: "6. Защита персональных данных",
+                section6Intro: "Администрация сайта применяет организационные и технические меры для защиты персональных данных от:",
+                protectItem1: "несанкционированного доступа;",
+                protectItem2: "утраты;",
+                protectItem3: "изменения;",
+                protectItem4: "распространения.",
+                section7Title: "7. Права пользователя",
+                section7Intro: "Пользователь имеет право:",
+                rightsItem1: "получать информацию о своих персональных данных;",
+                rightsItem2: "требовать их уточнения, блокирования или удаления;",
+                rightsItem3: "отзывать согласие на обработку персональных данных, обратившись по контактам сайта."
+            },
+            en: {
+                title: "Privacy Policy | WebStart",
+                backBtn: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Back`,
+                privacyTitle: "Privacy Policy",
+                privacyIntro1: "This Privacy Policy defines the procedure for processing and protecting the personal data of users of the Webstart.ee website, which belongs to the WebStart web studio.",
+                privacyIntro2: "By using the website, the user expresses consent to this Privacy Policy.",
+                section1Title: "1. General Provisions",
+                section1p1: "1.1. The website administration complies with the requirements of legislation in the field of personal data protection and takes all necessary measures for their safety.",
+                section1p2: "1.2. The Policy applies to all information that the website may receive about the user during its use.",
+                section1p3: "1.3. The website administration does not verify the accuracy of the personal data provided by the user.",
+                section2Title: "2. Personal Data of Users",
+                section2Intro: "The website may collect the following data:",
+                dataItem1: "name, surname;",
+                dataItem2: "email address;",
+                dataItem3: "phone number;",
+                dataItem4: "data provided in contact forms;",
+                dataItem5: "technical information (IP address, cookies, browser type, device data).",
+                section3Title: "3. Purposes of Collecting Personal Data",
+                section3Intro: "Personal data of users is used for:",
+                purposeItem1: "feedback with the user;",
+                purposeItem2: "processing applications and requests;",
+                purposeItem3: "providing web studio services;",
+                purposeItem4: "improving the quality of the website;",
+                purposeItem5: "analytics and statistics;",
+                purposeItem6: "compliance with legal requirements.",
+                section4Title: "4. Data Processing and Storage",
+                section4p1: "4.1. Processing of personal data is carried out in legal ways.",
+                section4p2: "4.2. Personal data is stored no longer than necessary for the purposes of its processing.",
+                section4p3: "4.3. Data is not transferred to third parties, except for cases provided by law or necessary for the provision of services (e.g., analytics services, hosting).",
+                section5Title: "5. Use of Cookies",
+                section5Intro: "The website uses cookies for:",
+                cookieItem1: "correct operation of the website;",
+                cookieItem2: "analysis of user behavior;",
+                cookieItem3: "improving user experience.",
+                section5p2: "The user can disable cookies in the browser settings.",
+                section6Title: "6. Personal Data Protection",
+                section6Intro: "The website administration applies organizational and technical measures to protect personal data from:",
+                protectItem1: "unauthorized access;",
+                protectItem2: "loss;",
+                protectItem3: "alteration;",
+                protectItem4: "distribution.",
+                section7Title: "7. User Rights",
+                section7Intro: "The user has the right to:",
+                rightsItem1: "receive information about their personal data;",
+                rightsItem2: "demand their clarification, blocking or deletion;",
+                rightsItem3: "withdraw consent to the processing of personal data by contacting the website."
+            },
+            et: {
+                title: "Privaatsuspoliitika | WebStart",
+                backBtn: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg> Tagasi`,
+                privacyTitle: "Privaatsuspoliitika",
+                privacyIntro1: "Käesolev privaatsuspoliitika sätestab veebilehe Webstart.ee kasutajate isikuandmete töötlemise ja kaitse korra, mis kuulub WebStart veebistuudiole.",
+                privacyIntro2: "Veebilehte kasutades väljendab kasutaja nõusolekut käesoleva privaatsuspoliitikaga.",
+                section1Title: "1. Üldsätted",
+                section1p1: "1.1. Veebilehe administratsioon järgib isikuandmete kaitse valdkonna seadusandluse nõudeid ja rakendab kõiki vajalikke meetmeid nende turvalisuse tagamiseks.",
+                section1p2: "1.2. Poliitika kehtib kogu teabe kohta, mida veebileht võib kasutaja kohta selle kasutamise ajal saada.",
+                section1p3: "1.3. Veebilehe administratsioon ei kontrolli kasutaja poolt esitatud isikuandmete õigsust.",
+                section2Title: "2. Kasutajate isikuandmed",
+                section2Intro: "Veebileht võib koguda järgmisi andmeid:",
+                dataItem1: "ees- ja perekonnanimi;",
+                dataItem2: "e-posti aadress;",
+                dataItem3: "telefoninumber;",
+                dataItem4: "tagasiside vormides esitatud andmed;",
+                dataItem5: "tehniline teave (IP-aadress, küpsised, brauseri tüüp, seadme andmed).",
+                section3Title: "3. Isikuandmete kogumise eesmärgid",
+                section3Intro: "Kasutajate isikuandmeid kasutatakse järgmistel eesmärkidel:",
+                purposeItem1: "kasutajaga tagasiside saamiseks;",
+                purposeItem2: "taotluste ja päringute töötlemiseks;",
+                purposeItem3: "veebistuudio teenuste osutamiseks;",
+                purposeItem4: "veebilehe kvaliteedi parandamiseks;",
+                purposeItem5: "analüütikaks ja statistikaks;",
+                purposeItem6: "seadusandluse nõuete täitmiseks.",
+                section4Title: "4. Andmete töötlemine ja säilitamine",
+                section4p1: "4.1. Isikuandmete töötlemine toimub seaduslikul viisil.",
+                section4p2: "4.2. Isikuandmeid säilitatakse mitte kauem, kui see on vajalik nende töötlemise eesmärkide saavutamiseks.",
+                section4p3: "4.3. Andmeid ei edastata kolmandatele isikutele, välja arvatud seadusega ettenähtud juhtudel või teenuste osutamiseks vajalikel juhtudel (nt analüüsiteenused, majutus).",
+                section5Title: "5. Küpsiste kasutamine",
+                section5Intro: "Veebileht kasutab küpsiseid järgmistel eesmärkidel:",
+                cookieItem1: "veebilehe korrektseks toimimiseks;",
+                cookieItem2: "kasutajate käitumise analüüsimiseks;",
+                cookieItem3: "kasutajakogemuse parandamiseks.",
+                section5p2: "Kasutaja saab küpsised brauseri seadetes välja lülitada.",
+                section6Title: "6. Isikuandmete kaitse",
+                section6Intro: "Veebilehe administratsioon rakendab organisatsioonilisi ja tehnilisi meetmeid isikuandmete kaitsmiseks järgmiste ohtude eest:",
+                protectItem1: "loata juurdepääs;",
+                protectItem2: "kaotamine;",
+                protectItem3: "muutmine;",
+                protectItem4: "levitamine.",
+                section7Title: "7. Kasutaja õigused",
+                section7Intro: "Kasutajal on õigus:",
+                rightsItem1: "saada teavet oma isikuandmete kohta;",
+                rightsItem2: "nõuda nende täpsustamist, blokeerimist või kustutamist;",
+                rightsItem3: "isikuandmete töötlemise nõusolek tagasi võtta, võttes ühendust veebilehega."
+            }
+        };
+
+        function switchLanguage(lang) {
+            localStorage.setItem('preferredLang', lang);
+            
+            const currentLangDisplay = document.getElementById('current-lang');
+            if (currentLangDisplay) {
+                currentLangDisplay.textContent = lang.toUpperCase();
+            }
+
+            document.querySelectorAll('.lang-menu-content button').forEach(btn => {
+                const isActive = btn.getAttribute('onclick').includes(`'${lang}'`);
+                btn.classList.toggle('active', isActive);
+            });
+            
+            const t = translations[lang];
+            document.title = t.title;
+            
+            document.querySelectorAll('[data-i18n]').forEach(element => {
+                const key = element.getAttribute('data-i18n');
+                if (t[key]) {
+                    element.innerHTML = t[key];
+                }
+            });
+            
+            document.documentElement.lang = lang;
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang') || 'ru';
+            switchLanguage(savedLang);
+        });
+    </script>
 </body>
 </html>

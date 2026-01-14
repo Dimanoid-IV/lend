@@ -1423,6 +1423,7 @@
         };
 
         function switchLanguage(lang) {
+            localStorage.setItem('preferredLang', lang);
             // Update active button and toggle text
             const currentLangDisplay = document.getElementById('current-lang');
             if (currentLangDisplay) {
@@ -1485,6 +1486,9 @@
 
         // Initialize on DOMContentLoaded
         document.addEventListener('DOMContentLoaded', () => {
+            const savedLang = localStorage.getItem('preferredLang') || 'ru';
+            switchLanguage(savedLang);
+            
             handleReveal();
             
             // Header scroll effect
