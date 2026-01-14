@@ -608,61 +608,29 @@
             max-width: 1300px;
             margin: 6rem auto 0;
             position: relative;
+            overflow: hidden;
         }
         
-        .carousel-title {
-            font-size: 2.5rem;
-            font-weight: 800;
-            text-align: center;
-            margin-bottom: 3rem;
-            color: var(--primary-dark);
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            animation: scroll 40s linear infinite;
+            width: max-content;
+        }
+        
+        .carousel-track:hover {
+            animation-play-state: paused;
+        }
+        
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
         }
         
         .carousel-container {
             display: flex;
-            gap: 2rem;
-            overflow-x: auto;
-            scroll-behavior: smooth;
             padding: 1rem 0 2rem;
-            scrollbar-width: none; /* Firefox */
-            -ms-overflow-style: none; /* IE/Edge */
-        }
-        
-        .carousel-container::-webkit-scrollbar {
-            display: none; /* Chrome/Safari */
-        }
-        
-        .carousel-btn {
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 50px;
-            height: 50px;
-            background: var(--white);
-            border: 1px solid var(--border);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary-dark);
-            cursor: pointer;
-            z-index: 10;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-        }
-        
-        .carousel-btn:hover {
-            background: var(--accent);
-            color: var(--white);
-            border-color: var(--accent);
-        }
-        
-        .carousel-btn.prev { left: -25px; }
-        .carousel-btn.next { right: -25px; }
-        
-        @media (max-width: 1350px) {
-            .carousel-btn.prev { left: 10px; }
-            .carousel-btn.next { right: 10px; }
+            overflow: hidden;
         }
         
         .carousel-item {
@@ -674,8 +642,37 @@
             box-shadow: var(--shadow-lg);
             transition: var(--transition);
             cursor: pointer;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
         }
         
+        .carousel-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: top center;
+            opacity: 0.15;
+            z-index: -1;
+            transition: var(--transition);
+        }
+        
+        .carousel-item:hover::before {
+            opacity: 0.25;
+            transform: scale(1.05);
+        }
+
+        /* Specific backgrounds for portfolio items */
+        .item-petdream::before { background-image: url('https://api.screenshotmachine.com?key=67f1b6&url=https://petdream.eu&dimension=1024x768'); }
+        .item-dreambooks::before { background-image: url('https://api.screenshotmachine.com?key=67f1b6&url=https://dreambooks.ee&dimension=1024x768'); }
+        .item-autotop::before { background-image: url('https://api.screenshotmachine.com?key=67f1b6&url=https://autotop.ee&dimension=1024x768'); }
+        .item-veox::before { background-image: url('https://api.screenshotmachine.com?key=67f1b6&url=https://veox.ee&dimension=1024x768'); }
+
         .carousel-item:hover {
             transform: translateY(-8px);
             box-shadow: var(--shadow-xl);
@@ -683,9 +680,10 @@
         
         .carousel-item img {
             width: 100%;
-            height: 220px;
+            height: 200px;
             object-fit: cover;
             border-bottom: 3px solid var(--accent);
+            background: white; /* Fallback for slow loading thumbnails */
         }
         
         .carousel-content {
@@ -940,62 +938,57 @@
 
     <!-- Portfolio Carousel -->
     <section class="section">
-        <div class="portfolio-carousel reveal" style="position: relative; max-width: 1200px; margin: 6rem auto 0;">
+        <div class="portfolio-carousel reveal">
             <h3 class="carousel-title" data-i18n="portfolioTitle">Our Recent Projects</h3>
             
-            <button class="carousel-btn prev" id="prevBtn" aria-label="Previous">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 18 9 12 15 6"></polyline></svg>
-            </button>
-            <button class="carousel-btn next" id="nextBtn" aria-label="Next">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
-            </button>
-
-            <div class="carousel-container" id="carouselContainer">
-                <div class="carousel-item" onclick="window.open('https://petdream.eu', '_blank')">
-                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=PetDream.eu" alt="PetDream.eu">
-                    <div class="carousel-content">
-                        <h4>PetDream.eu</h4>
-                        <p data-i18n="portfolioPetdream">Pet products e-commerce platform</p>
-                        <a href="https://petdream.eu" target="_blank" class="carousel-link" data-i18n="visitSite">
-                            Visit Website
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                        </a>
+            <div class="carousel-container">
+                <div class="carousel-track" id="carouselTrack">
+                    <div class="carousel-item item-petdream" onclick="window.open('https://petdream.eu', '_blank')">
+                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=PetDream.eu" alt="PetDream.eu">
+                        <div class="carousel-content">
+                            <h4>PetDream.eu</h4>
+                            <p data-i18n="portfolioPetdream">Pet products e-commerce platform</p>
+                            <a href="https://petdream.eu" target="_blank" class="carousel-link" data-i18n="visitSite">
+                                Visit Website
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="carousel-item" onclick="window.open('https://dreambooks.ee', '_blank')">
-                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=DreamBooks.ee" alt="DreamBooks.ee">
-                    <div class="carousel-content">
-                        <h4>DreamBooks.ee</h4>
-                        <p data-i18n="portfolioDreambooks">Online bookstore and library platform</p>
-                        <a href="https://dreambooks.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
-                            Visit Website
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                        </a>
+                    
+                    <div class="carousel-item item-dreambooks" onclick="window.open('https://dreambooks.ee', '_blank')">
+                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=DreamBooks.ee" alt="DreamBooks.ee">
+                        <div class="carousel-content">
+                            <h4>DreamBooks.ee</h4>
+                            <p data-i18n="portfolioDreambooks">Online bookstore and library platform</p>
+                            <a href="https://dreambooks.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                                Visit Website
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="carousel-item" onclick="window.open('https://autotop.ee', '_blank')">
-                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=AutoTop.ee" alt="AutoTop.ee">
-                    <div class="carousel-content">
-                        <h4>AutoTop.ee</h4>
-                        <p data-i18n="portfolioAutotop">Car parts and accessories online store</p>
-                        <a href="https://autotop.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
-                            Visit Website
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                        </a>
+                    
+                    <div class="carousel-item item-autotop" onclick="window.open('https://autotop.ee', '_blank')">
+                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=AutoTop.ee" alt="AutoTop.ee">
+                        <div class="carousel-content">
+                            <h4>AutoTop.ee</h4>
+                            <p data-i18n="portfolioAutotop">Car parts and accessories online store</p>
+                            <a href="https://autotop.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                                Visit Website
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="carousel-item" onclick="window.open('https://veox.ee', '_blank')">
-                    <img src="https://placeholder.co/350x220/0ea5e9/fff?text=Veox.ee" alt="Veox.ee">
-                    <div class="carousel-content">
-                        <h4>Veox.ee</h4>
-                        <p data-i18n="portfolioVeox">Modern tech solutions and services</p>
-                        <a href="https://veox.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
-                            Visit Website
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
-                        </a>
+                    
+                    <div class="carousel-item item-veox" onclick="window.open('https://veox.ee', '_blank')">
+                        <img src="https://placeholder.co/350x200/0ea5e9/fff?text=Veox.ee" alt="Veox.ee">
+                        <div class="carousel-content">
+                            <h4>Veox.ee</h4>
+                            <p data-i18n="portfolioVeox">Modern tech solutions and services</p>
+                            <a href="https://veox.ee" target="_blank" class="carousel-link" data-i18n="visitSite">
+                                Visit Website
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M12 5l7 7-7 7"/></svg>
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -1474,50 +1467,11 @@
             });
 
             // Carousel Functionality
-            const carousel = document.getElementById('carouselContainer');
-            const prevBtn = document.getElementById('prevBtn');
-            const nextBtn = document.getElementById('nextBtn');
-            let autoScroll;
-
-            function startAutoScroll() {
-                autoScroll = setInterval(() => {
-                    const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-                    const gap = 32; // 2rem
-                    const step = itemWidth + gap;
-                    
-                    if (carousel.scrollLeft + carousel.clientWidth >= carousel.scrollWidth - 10) {
-                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
-                    } else {
-                        carousel.scrollBy({ left: step, behavior: 'smooth' });
-                    }
-                }, 4000);
-            }
-
-            function stopAutoScroll() {
-                clearInterval(autoScroll);
-            }
-
-            if (carousel && prevBtn && nextBtn) {
-                nextBtn.addEventListener('click', () => {
-                    const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-                    const gap = 32;
-                    carousel.scrollBy({ left: itemWidth + gap, behavior: 'smooth' });
-                    stopAutoScroll();
-                    startAutoScroll();
-                });
-
-                prevBtn.addEventListener('click', () => {
-                    const itemWidth = carousel.querySelector('.carousel-item').offsetWidth;
-                    const gap = 32;
-                    carousel.scrollBy({ left: -(itemWidth + gap), behavior: 'smooth' });
-                    stopAutoScroll();
-                    startAutoScroll();
-                });
-
-                carousel.addEventListener('mouseenter', stopAutoScroll);
-                carousel.addEventListener('mouseleave', startAutoScroll);
-
-                startAutoScroll();
+            const track = document.getElementById('carouselTrack');
+            if (track) {
+                // Clone items for infinite scroll
+                const items = track.innerHTML;
+                track.innerHTML += items; // Double the items
             }
 
             if (contactForm) {
